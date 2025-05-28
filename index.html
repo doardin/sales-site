@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Moderna com API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+    <div id="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <div class="full-screen-center">
+        <div id="shop-card-container" class="shop-card">
+            <header class="mb-8 text-center">
+                <h1 class="shop-title">
+                    <ion-icon name="storefront-outline"></ion-icon>
+                    Nossa Loja Online
+                </h1>
+                <p class="shop-subtitle">Descubra produtos incríveis e compre com facilidade.</p>
+            </header>
+
+            <main>
+                <div class="mb-6">
+                    <label for="product-select" class="form-label block">Escolha o Produto:</label>
+                    <div class="relative">
+                        <select id="product-select" name="product" class="form-select appearance-none" disabled>
+                            <option value="">Carregando produtos...</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-700">
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6 quantity-control-container">
+                    <div class="quantity-info-container">
+                        <label class="form-label block">Quantidade:</label>
+                        <span id="max-stock-info"></span>
+                    </div>
+                    <div class="quantity-control">
+                        <button id="decrease-quantity" class="quantity-button" aria-label="Diminuir quantidade">
+                            <ion-icon name="remove-outline"></ion-icon>
+                        </button>
+                        <span id="quantity-display" class="quantity-display">1</span>
+                        <button id="increase-quantity" class="quantity-button" aria-label="Aumentar quantidade">
+                            <ion-icon name="add-outline"></ion-icon>
+                        </button>
+                    </div>
+                    <div id="whatsapp-message" style="display: none;"></div>
+                </div>
+
+                <div id="total-price-container" class="hidden">
+                    <span id="total-price-label">Valor Total</span>
+                    <span id="total-price-value">R$ 0,00</span>
+                </div>
+
+                <button id="buy-button" class="buy-button" disabled>
+                    <span id="buy-button-text">Comprar Agora</span>
+                    <span id="buy-button-spinner" class="loading-spinner-button" style="display: none;"></span>
+                    <ion-icon name="arrow-forward-outline" class="ml-2"></ion-icon>
+                </button>
+            </main>
+        </div>
+    </div>
+
+    <a href="https://wa.me/5515996556039" target="_blank" rel="noopener noreferrer" class="whatsapp-fab"
+        aria-label="Contato via WhatsApp">
+        <ion-icon name="logo-whatsapp"></ion-icon>
+    </a>
+
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <button id="close-info-modal-button" class="modal-close-button">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div id="modal-icon-container"></div>
+            <h2 id="info-modal-title" class="modal-title">Aviso</h2>
+            <p id="info-modal-message" class="modal-message"></p>
+            <div class="modal-actions" style="justify-content: center;">
+                <button id="ok-info-modal-button" class="modal-button modal-button-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmation-purchase-modal" class="modal">
+        <div class="modal-content">
+            <button id="close-confirmation-modal-button" class="modal-close-button">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <h2 class="modal-title">Confirme seu Pedido</h2>
+
+            <div id="order-summary">
+                <p><strong>Produto:</strong><span id="confirm-product-name">-</span></p>
+                <p><strong>Quantidade:</strong><span id="confirm-quantity">-</span></p>
+                <p><strong>Preço Unitário:</strong><span id="confirm-unit-price">-</span></p>
+            </div>
+
+            <div id="order-final-total">
+                <p><strong>Total:</strong> <span id="confirm-grand-total">R$ 0,00</span></p>
+            </div>
+
+            <div class="email-input-container">
+                <label for="confirm-email-input" class="form-label block">Seu E-mail (para recebimento do
+                    pedido):</label>
+                <input type="email" id="confirm-email-input" class="form-input" placeholder="seuemail@exemplo.com">
+                <p id="confirm-email-error" class="email-error-message">Por favor, insira um e-mail válido.</p>
+            </div>
+
+            <div class="modal-actions">
+                <button id="cancel-purchase-button" class="modal-button modal-button-secondary">Cancelar</button>
+                <button id="confirm-purchase-button" class="modal-button modal-button-primary" disabled> <span
+                        id="confirm-purchase-button-text">Confirmar Pedido</span>
+                    <span id="confirm-purchase-spinner" class="loading-spinner-button"
+                        style="display: none; margin-left: 8px;"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>

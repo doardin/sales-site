@@ -1,0 +1,430 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5;
+}
+
+.full-screen-center {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(240, 242, 245, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    transition: opacity 0.3s ease-out;
+}
+
+.loader-spinner {
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #4f46e5;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+.shop-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.04);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
+}
+
+.shop-card.visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.shop-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.shop-subtitle {
+    color: #4a5568;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #2d3748;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+.email-error-message {
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.quantity-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.25rem;
+}
+
+#max-stock-info {
+    font-size: 0.75rem;
+    color: #4a5568;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    padding: 0.25rem;
+    width: fit-content;
+}
+
+.quantity-button {
+    background-color: #e9ecef;
+    color: #495057;
+    border: none;
+    border-radius: 6px;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.quantity-button:hover:not(:disabled) {
+    background-color: #dee2e6;
+}
+
+.quantity-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.quantity-display {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #2d3748;
+    min-width: 2rem;
+    text-align: center;
+}
+
+#whatsapp-message {
+    font-size: 0.8rem;
+    color: #c2410c;
+    background-color: #fff7ed;
+    border: 1px solid #fed7aa;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+}
+
+#total-price-container {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px dashed #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+#total-price-container.hidden {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    border: none;
+}
+
+#total-price-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+#total-price-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+
+.buy-button {
+    width: 100%;
+    background-image: linear-gradient(to right, #6366f1, #8b5cf6);
+    color: white;
+    font-weight: 600;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.buy-button:hover:not(:disabled) {
+    background-image: linear-gradient(to right, #4f46e5, #7c3aed);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.buy-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background-image: linear-gradient(to right, #a5b4fc, #c4b5fd);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transform: translateY(0);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 190;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.modal-message {
+    font-size: 0.95rem;
+    color: #4a5568;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    color: #9ca3af;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+}
+
+.modal-close-button:hover {
+    color: #4b5563;
+}
+
+.modal-button {
+    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.modal-button-primary {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.modal-button-primary:hover:not(:disabled) {
+    background-color: #4338ca;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+.modal-button-primary:disabled {
+    background-color: #a5b4fc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.modal-button-secondary {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.modal-button-secondary:hover {
+    background-color: #d1d5db;
+}
+
+#modal-icon-container ion-icon {
+    font-size: 3rem;
+    display: block;
+    margin: 0 auto 0.75rem auto;
+}
+
+.loading-spinner-button {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-left-color: #ffffff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.whatsapp-fab {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 150;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    text-decoration: none;
+}
+
+.whatsapp-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.whatsapp-fab ion-icon {
+    font-size: 2.25rem;
+}
+
+#order-summary p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #374151;
+}
+
+#order-summary p strong {
+    color: #1f2937;
+    min-width: 120px;
+    margin-right: 0.5em;
+}
+
+#order-final-total {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+#order-final-total p {
+    font-size: 1.25rem;
+    text-align: right;
+}
+
+#order-final-total strong {
+    color: #1f2937;
+}
+
+#order-final-total span {
+    font-weight: 700;
+    color: #16a34a;
+}
+
+.modal-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.email-input-container {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
